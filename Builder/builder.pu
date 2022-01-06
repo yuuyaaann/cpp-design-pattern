@@ -1,0 +1,65 @@
+@startuml
+title builder patern
+skinparam dpi 150
+
+note as N1
+  Builder パターンについて
+  オブジェクトの生成する処理を担当するクラス用意して、生成する
+  クラスとその生成ロジックとを分離させる
+  <メリット>
+  ・同じ生成処理で異なるオブジェクト生成できる
+  ・生成するロジックを独立させられる
+end note
+
+class Client {
+
+}
+
+class Director {
+
+}
+
+note left of Director : Buildインタフェースを用いてオブジェクトを生成
+
+
+interface HomeBuilder {
+    + SetStructure()
+    + GetResult()
+}
+
+note left of HomeBuilder : インタフェースを宣言
+
+
+class ModernBuilder {
+    + SetStructure()
+    + GetResult()
+}
+
+note left of ModernBuilder : オブジェクトを生成する処理を追加
+
+class JapaneseHomeBuilder {
+    + SetStructure()
+    + GetResult()
+}
+
+class EuropeanHomeBuilder {
+    + SetStructure()
+    + GetResult()
+}
+
+class BuildHome {
+
+}
+
+Client ..> HomeBuilder
+Client ..> Director
+Client ..> BuildHome
+Director o..|> HomeBuilder
+HomeBuilder <|.. ModernBuilder
+HomeBuilder <|.. JapaneseHomeBuilder
+HomeBuilder <|.. EuropeanHomeBuilder
+ModernBuilder ..> BuildHome : <<create>>
+JapaneseHomeBuilder ..> BuildHome : <<create>>
+EuropeanHomeBuilder ..> BuildHome : <<create>>
+
+@enduml
