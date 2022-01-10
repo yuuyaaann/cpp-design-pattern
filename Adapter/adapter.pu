@@ -1,0 +1,49 @@
+@startuml
+
+note as N1
+  Adapter パターンについて
+  インタフェースの違いをアダプターが吸収するので、直接的に互換性がないものも
+  利用できる
+  <メリット>
+  ・既存のクラスを再利用できる
+    → 再利用を念頭に置いていなかったクラスでも、アダプターを介することで、
+      修正を加えずに再利用できる
+  ・1つのクラスをさまざまな状況で使用することができる
+  ・インタフェースを提供するクラスの数を減らせる
+end note
+
+class Client {
+
+}
+
+interface Writer {
+    + OpenFile()
+    + CloseFile()
+    + WriteData(std::string string)
+}
+
+note left of Writer : インタフェースを宣言
+
+
+class FileWriter {
+}
+
+class ConsoleWriter {
+}
+
+class HTMLWriterClassAdapter {
+}
+
+note right of HTMLWriterClassAdapter : Writer と HTML Writer のインタフェース変換をする
+
+class HTMLWriter {
+
+}
+
+Client ..> Writer
+Writer <|.. FileWriter
+Writer <|.. ConsoleWriter
+Writer <|.. HTMLWriterClassAdapter
+HTMLWriter <|-- HTMLWriterClassAdapter
+
+@enduml
