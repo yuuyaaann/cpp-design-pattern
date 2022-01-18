@@ -1,0 +1,30 @@
+@startuml
+
+note as N1
+  Decorator(でこれーた) パターンについて
+  ・機能を組み合わせる必要がある場合や、機能を実行時につけ外したい場合使う。
+    オブジェクトに動的に機能を追加できる
+  ・機能の組み合わせが容易
+end note
+
+interface Writer {
+  + WriteData(str string)
+}
+
+class LocalFileWriter {
+  + WriteData(str string)
+}
+
+class ConsoleWrtiter {
+  + WriteData(str string)
+}
+
+class BRWriter {
+  + WriteData(str string)
+}
+
+Writer <|.. LocalFileWriter
+Writer <|.. ConsoleWrtiter
+Writer <|.. BRWriter
+
+@enduml
