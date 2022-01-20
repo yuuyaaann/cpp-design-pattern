@@ -1,0 +1,34 @@
+@startuml
+
+note as N1
+  Facade(ファサード) について
+  <概要>
+  サブシステムへの統合されたインターフェースを提供するこを提供することで、
+  サブシステムを簡素化できる。
+  クライアントは、Facade クラスのみ意識すればよくなる。
+  これをやらない場合、すべてのクラスを意識しなければいけない
+  <メリット>
+  ・サブシステムのインタフェースが明解になる
+  ・ファザードがサブシステムの境界になる
+  ・サブシステムの内部が隠ぺいされる
+end note
+
+class Client {
+
+}
+
+package Subsystem <<Folder>> {
+  class Facade {
+  }
+  class SubsystemA
+  class SubsystemB
+}
+
+note left of Facade : サブシステムへのフェースを提供。
+
+
+Client ..> Facade
+Facade ..> SubsystemA 
+Facade ..> SubsystemB
+
+@enduml
