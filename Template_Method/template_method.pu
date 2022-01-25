@@ -1,0 +1,43 @@
+@startuml
+
+note as N1
+  Template Method (テンプレートメソッドパターン)
+  <概要>
+  流れが同じ処理を構造化します。スーパークラスのメソッドで
+  手順を決めて置き、順番に呼び出されてるメソッドの中の中身は
+  サブクラスで実装を任せる
+  <メリット>
+  ・流れを把握しやすい
+    処理の流れはテンプレートメソッドで定義されているので、テンプレートの大筋がわかる
+  ・カスタマイズポイントが明確
+end note
+
+class FileFormatter {
+  + formatter()
+  + readFile()
+  + formatting()
+  + writeToFile()
+}
+
+class CSVToHTMLFormatter {
+  + readFile()
+  + formatting()
+  + writeToFile()
+}
+class TextLengthFormatter {
+  + readFile()
+  + formatting()
+  + writeToFile()
+}
+
+class TabToCSVFormatter {
+  + readFile()
+  + formatting()
+  + writeToFile()
+}
+
+FileFormatter <|-- CSVToHTMLFormatter
+FileFormatter <|-- TextLengthFormatter
+FileFormatter <|-- TabToCSVFormatter
+
+@enduml
