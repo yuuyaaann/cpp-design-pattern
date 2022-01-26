@@ -1,0 +1,50 @@
+@startuml
+
+note as N1
+  Strategy (ストラテジー)
+  <概要>
+  アルゴリズム部分を明確に定義してカプセル化する
+  <メリット>
+  ・条件文が複数から１つになる
+  ・方言による処理がひとまとまりになる
+end note
+
+Interface Dialect {
+  + SayWelcome()
+  + SayThanks()
+}
+
+note left of Dialect : インタフェースの定義
+
+class KyotoDialect {
+  + SayWelcome()
+  + SayThanks()
+}
+
+class NagoyaDialect {
+  + SayWelcome()
+  + SayThanks()
+}
+
+note left of KyotoDialect : 実装部
+
+class DialectSpeaker {
+  + SayWelcome()
+  + SayThanks()
+}
+
+note left of DialectSpeaker : xxDialect のオブジェクトをこのクラスが保持
+
+
+class Client {
+}
+
+
+
+
+Client --> DialectSpeaker
+DialectSpeaker o--> Dialect
+Dialect <|.. NagoyaDialect
+Dialect <|.. KyotoDialect
+
+@enduml
