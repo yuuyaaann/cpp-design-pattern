@@ -1,0 +1,36 @@
+@startuml
+
+note as N1
+  Mediator (メディエータ)
+  メディエータパターンでは、オブジェクト間の複雑な協調関係を集中管理する
+  オブジェクトを設けることで、オブジェクト間の依存関係を弱め、柔軟に管理する
+  <メリット>
+  ・Colleague 間の結合度が低くなる
+  ・オブジェクト間の協調関係が理解しやすくなる
+end note
+
+interface Colleague {
+  + SetMediator(mediator: Mediator)
+}
+
+class YearList {}
+class MonthList {}
+
+interface Mediator {
+  + ColleagueChanged(c: Colleague)
+}
+
+class MainFrame{
+  + ColleagueChanged(c: Colleague)
+  + MakeObject()
+}
+
+Mediator <|.. MainFrame
+Colleague <|.. YearList
+Colleague <|.. MonthList
+
+
+MainFrame o--> YearList
+MainFrame o--> MonthList
+
+@enduml

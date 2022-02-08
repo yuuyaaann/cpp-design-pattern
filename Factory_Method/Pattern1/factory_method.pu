@@ -1,0 +1,33 @@
+@startuml
+
+note as N1
+  Factory Method (ファクトリメソッド)
+  <概要>
+  インタフェースを介すことで、オブジェクトの生成を柔軟に行えるようにする。
+  ファクトリメソッドパターンでは、インターフェースを介してオブジェクトの生成を行うことで、
+  生成される側の結びつきを弱め、クラスの切り替えを柔軟にできるようにする
+  <メリット>
+  ・メソッドの呼び出しではオブジェクトを取得する
+  ・クライアント側では、ファイル利用するクラスなのか、データベース利用するクラスなのかを意識する必要がない
+end note
+
+class DataObject {
+  + Create() : static DataObject*
+  + GetName()
+}
+
+class FileDataObject {
+  + GetName()
+}
+class DBDataObject {
+  + GetName()
+}
+
+class Client {
+}
+
+DataObject <|-- FileDataObject
+DataObject <|-- DBDataObject
+Client --> DataObject
+
+@enduml
