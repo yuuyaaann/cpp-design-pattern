@@ -1,0 +1,29 @@
+@startuml
+
+note as N1
+  Composite パターンについて
+  要素の集合を表現するオブジェクトと、その集合に含まれるそれぞれの要素を表現する
+  オブジェクトを一様に扱えるようにする。
+ end note
+
+interface District {
+  + getPopulation():int
+}
+
+class UnitDistrict {
+  + getPopulation():int
+  + setPopulation(popilation:int)
+  - population
+}
+
+class GroupDistrict {
+  + getPopulation():int
+  + add(district: District)
+}
+
+
+District <|.. UnitDistrict
+District <|.. GroupDistrict
+District <--o GroupDistrict
+
+@enduml
