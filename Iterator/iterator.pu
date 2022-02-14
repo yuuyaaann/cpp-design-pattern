@@ -1,0 +1,39 @@
+@startuml
+
+note as N1
+  Iterator (イテレータ)
+  複数のオブジェクトを一元管理するオブジェクトのことを集約オブジェクトと呼ぶ。
+  イテレータは、この集約オブジェクト内の個々のオブジェクトに統一化された手段でアクセスできるようにする。
+end note
+
+interface Aggregate {
+  + iterator()
+}
+
+interface Iterator {
+  + hasnNxt()
+  + next()
+}
+
+class IteratorMachine{
+  - m_pMachine
+  + hasnNxt()
+  + next()
+}
+
+note left of IteratorMachine: vector,list,map などは標準でイテレータが実装されている(Machine も)
+
+class Machine{
+  - cvtPats
+  + iterator()
+}
+
+
+
+Aggregate --> Iterator : <<create>>
+Iterator <|.. IteratorMachine
+Aggregate <|.. Machine
+IteratorMachine o--> Machine
+Machine o--> Parts
+
+@enduml
