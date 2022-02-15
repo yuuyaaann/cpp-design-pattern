@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 
+// これいいか自信ない
+
 class District {
     public:
         virtual ~District();
@@ -57,7 +59,7 @@ int main () {
     group.add(test1);
     group.add(test2);
 
-    group.getPopulation();
+    std::cout << group.getPopulation() << std::endl;
 
     return 0;
 }
