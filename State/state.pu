@@ -1,0 +1,51 @@
+@startuml
+
+note as N1
+  State パターンについて
+
+  <メリット>
+  ・
+ end note
+
+interface EngineState {
+    + up()
+    + down()
+    + showCurrentState()
+}
+
+class Engineidle {
+    + up()
+    + down()
+    + showCurrentState()
+}
+
+class EngineRunningLow {
+    + up()
+    + down()
+    + showCurrentState()
+}
+
+class EngineRunningHigh {
+    + up()
+    + down()
+    + showCurrentState()
+}
+
+class EngineBox {
+    - state : EngineState
+    + up()
+    + down()
+    + nowState()
+    + changeState()
+}
+
+class Client {}
+
+EngineState <|.. Engineidle
+EngineState <|.. EngineRunningLow
+EngineState <|.. EngineRunningHigh
+
+EngineBox o--> EngineState
+Client --> EngineBox
+
+@enduml
